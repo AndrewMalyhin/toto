@@ -3,18 +3,19 @@
 FROM python:3.10-slim-buster
 
 ENV POETRY_VERSION=1.1.12
+ENV POETRY_HOME="/opt/poetry"
 
-WORKDIR /.
+ENV PATH="$POETRY_HOME/bin:$PATH"
 
-COPY poetry.lock pyproject.toml /./
+WORKDIR /toto
+
+COPY poetry.lock pyproject.toml /toto/
 
 RUN pip install "poetry==$POETRY_VERSION"
-
-RUN poetry config virtualenvs.create false
 RUN poetry install
 
-COPY . .
+COPY . /toto
 
-EXPOSE 5001
+EXPOSE 5000
 
-CMD ["${HOME}/.poetry/bin/poetry run python toto"]
+CMD [ "poetry", "run", "python", "toto" ]
