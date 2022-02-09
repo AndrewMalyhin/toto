@@ -9,6 +9,7 @@ license = "MIT"
 python = "^3.10"
 aiohttp = "^3.8.1"
 psycopg = "^3.0.8"
+pytest = "^7.0.0"
 
 [tool.poetry.dev-dependencies]
 
